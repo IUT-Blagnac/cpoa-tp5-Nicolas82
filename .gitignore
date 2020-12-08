@@ -30,3 +30,4 @@ target
 .gradle
 Gemfile.lock
 .vscode
+.DS_Store
