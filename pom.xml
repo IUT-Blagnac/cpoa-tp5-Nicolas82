@@ -55,7 +55,7 @@
                             <version>2.0.12</version>
                         </docletArtifact>
                         <additionalOptions>
-							<additionalOption>-umlImageFormat png</additionalOption>
+							<!--<additionalOption>...</additionalOption>-->
                         </additionalOptions>
                     </configuration>
                 </execution>
