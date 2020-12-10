@@ -145,6 +145,7 @@ public class CourseController extends JPanel implements Observer, ChangeListener
 
 		CourseController controller = new CourseController(data);
 		BarChartObserver bar = new BarChartObserver(data);
+		PyChartObserver pychart = new PyChartObserver(data);
 
 		JScrollPane scrollPane = new JScrollPane(bar,
 				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
@@ -157,16 +158,21 @@ public class CourseController extends JPanel implements Observer, ChangeListener
 
 		GridBagConstraints constraints = new GridBagConstraints();
 		constraints.fill = GridBagConstraints.BOTH;
-		constraints.weightx = 0.25;
-		constraints.weighty = 1.0;
+		constraints.weightx = 0.1;
+		constraints.weighty = 1;
 		constraints.gridx = 0;
 		constraints.gridy = 0;
 		frame.getContentPane().add(controller, constraints);
-		constraints.weightx = 0.5;
+		constraints.weightx = 1;
 		constraints.weighty = 1.0;
 		constraints.gridx = 1;
 		constraints.gridy = 0;
 		frame.getContentPane().add(scrollPane, constraints);
+		constraints.weightx = 1;
+		constraints.weighty = 1.0;
+		constraints.gridx = 1;
+		constraints.gridy = 1;
+		frame.getContentPane().add(pychart, constraints);
 		frame.pack();
 		frame.setVisible(true);
 	}
