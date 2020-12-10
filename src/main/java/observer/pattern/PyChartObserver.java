@@ -59,9 +59,10 @@ public class PyChartObserver extends JPanel implements Observer {
 	 * @param o
 	 *            the observed CourseData object that has changed
 	 */
-	public void update(Observable o) {
-		CourseData data = (CourseData) o;
-		this.courseData = data.getUpdate();
+	public void update(Observable o, Vector<CourseRecord> courseData) {
+		//CourseData data = (CourseData) o;
+        //this.courseData = data.getUpdate();
+        this.courseData = courseData;
 
 		this.setPreferredSize(new Dimension(2 * LayoutConstants.xOffset
 				+ (LayoutConstants.barSpacing + LayoutConstants.barWidth)
