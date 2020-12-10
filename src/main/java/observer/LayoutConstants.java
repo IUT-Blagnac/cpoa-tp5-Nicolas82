@@ -2,7 +2,6 @@ package observer;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.Vector;
 
 /**
  	Represents some constants for the drawing of graphs in this example.
