@@ -73,6 +73,7 @@ public class CourseData extends Observable {
 	 * 
 	 * @return vector of course data
 	 */
+	@SuppressWarnings("unchecked")
 	public Vector<CourseRecord> getUpdate() {
 		return (Vector<CourseRecord>) courseData.clone();
 	}

@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import observer.CourseRecord;
 import observer.LayoutConstants;
 
+@SuppressWarnings("serial")
 public class PyChartObserver extends JPanel implements Observer {
 
 	private Vector<CourseRecord> courseData;

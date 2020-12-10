@@ -70,7 +70,6 @@ public class BarChartObserver extends JPanel implements Observer {
 	 *            the observed CourseData object that has changed
 	 */
 	public void update(Observable o, Vector<CourseRecord> courseData) {
-		CourseData data = (CourseData) o;
 		//this.courseData = data.getUpdate();
 		this.courseData = courseData;
 
