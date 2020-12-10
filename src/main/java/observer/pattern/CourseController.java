@@ -6,6 +6,8 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.chrono.ThaiBuddhistChronology;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.JButton;
@@ -116,7 +118,7 @@ public class CourseController extends JPanel implements Observer, ChangeListener
 	public void actionPerformed(ActionEvent arg0) {
 		String input = JOptionPane.showInputDialog("Please enter new course name:");
 		if (input != null){
-			courseData.addCourseRecord(new CourseRecord(input, 50));
+			courseData.addCourseRecord(new CourseRecord(input, 50), observers);
 			// leave it up notify/update mechanism to invoke this.addCourse
 		}
 	}
@@ -140,13 +142,17 @@ public class CourseController extends JPanel implements Observer, ChangeListener
 	 */
 	public static void main(String[] args) {
 		CourseData data = new CourseData();
-		data.addCourseRecord(new CourseRecord("Physics", 50));
-		data.addCourseRecord(new CourseRecord("Chemistry", 50));
-		data.addCourseRecord(new CourseRecord("Biology", 50));
+		data.addCourseRecord(new CourseRecord("Physics", 50), null);
+		data.addCourseRecord(new CourseRecord("Chemistry", 50), null);
+		data.addCourseRecord(new CourseRecord("Biology", 50), null);
 
 		CourseController controller = new CourseController(data);
 		BarChartObserver bar = new BarChartObserver(data);
 		PyChartObserver pychart = new PyChartObserver(data);
+
+		observers.add(bar);
+		observers.add(pychart);
+		observers.add(controller);
 
 		JScrollPane scrollPane = new JScrollPane(bar,
 				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
@@ -183,4 +189,6 @@ public class CourseController extends JPanel implements Observer, ChangeListener
 	private Vector<JSlider> sliders;
 
 	private JPanel coursePanel;
+
+	private static ArrayList<Observer> observers = new ArrayList<>();
 }
