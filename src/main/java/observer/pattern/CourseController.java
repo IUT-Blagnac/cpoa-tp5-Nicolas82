@@ -45,7 +45,7 @@ public class CourseController extends JPanel implements Observer, ChangeListener
 
 		GridBagConstraints constraints = new GridBagConstraints();
 		constraints.fill = GridBagConstraints.BOTH;
-		courses.attach(this);
+		courses.attach(this, true);
 		Vector<CourseRecord> state = courses.getUpdate();
 
 		for (int i = 0; i < state.size(); i++)
@@ -100,13 +100,11 @@ public class CourseController extends JPanel implements Observer, ChangeListener
 	 *            the CourseData subject that has changed
 	 */
 	 public void update(Observable o, Vector<CourseRecord> courseData) {
-		//CourseData courses = (CourseData) o;
-		//Vector<CourseRecord> newCourses = courses.getUpdate();
 		Vector<CourseRecord> newCourses = courseData;
 		for (int i = sliders.size(); i < newCourses.size(); i++) {
 			this.addCourse((CourseRecord) newCourses.elementAt(i));
 		}
-	} 
+	}
 
 	/**
 	 * Manages the creation of a new course. Called when the "New Course" button is pressed.
@@ -141,13 +139,14 @@ public class CourseController extends JPanel implements Observer, ChangeListener
 	 */
 	public static void main(String[] args) {
 		CourseData data = new CourseData();
-		data.addCourseRecord(new CourseRecord("Physics", 50), null);
-		data.addCourseRecord(new CourseRecord("Chemistry", 50), null);
-		data.addCourseRecord(new CourseRecord("Biology", 50), null);
 
 		CourseController controller = new CourseController(data);
 		BarChartObserver bar = new BarChartObserver(data);
 		PyChartObserver pychart = new PyChartObserver(data);
+
+		data.addCourseRecord(new CourseRecord("Physics", 50), null);
+		data.addCourseRecord(new CourseRecord("Chemistry", 50), null);
+		data.addCourseRecord(new CourseRecord("Biology", 50), null);
 
 		observers.add(bar);
 		observers.add(pychart);

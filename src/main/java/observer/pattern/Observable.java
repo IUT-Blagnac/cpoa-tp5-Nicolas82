@@ -22,8 +22,11 @@ public abstract class Observable {
 	 * @param o
 	 *            the Observer that wishes to attach
 	 */
-	public void attach(Observer o) {
-		this.observers.addElement(o);
+	public void attach(Observer o, boolean isController) {
+		if (isController)
+			this.controller = o;
+		else
+			this.observers.addElement(o);
 	}
 
 	/**
@@ -40,23 +43,30 @@ public abstract class Observable {
 	}
 
 	/**
-	 * Notify all Observers that Subject has changed
+	 * Notify all Observers that a subject has changed
+	 * if notifyController is true,  the controller is also notified
+	 * 
 	 */
-	public void notifyObservers(Vector<CourseRecord> courseData) {
+	public void notifyObservers(Vector<CourseRecord> courseData, boolean notifyController) {
 		for (int i = 0; i < observers.size(); i++) {
 			Observer observer = observers.elementAt(i);
 			observer.update(this, courseData);
 		}
+		if (notifyController)
+			controller.update(this, courseData);
 	}
 
 		/**
 	 * Notify the observers that Subject has changed
+	 * if notifyController is true, the controller is also notified
 	 * It is a smart push
 	 */
-	public void notifyObservers(Vector<CourseRecord> courseData, ArrayList<Observer> observers) {
+	public void notifyObservers(Vector<CourseRecord> courseData, ArrayList<Observer> observers, boolean notifyController){
 		for (int i = 0; i < observers.size(); i++) {
 			observers.get(i).update(this, courseData);
 		}
+		if (notifyController)
+			controller.update(this, courseData);
 	}
 
 	/**
@@ -67,4 +77,6 @@ public abstract class Observable {
 	public abstract Object getUpdate();
 
 	protected Vector<Observer> observers;
+
+	protected Observer controller;
 }

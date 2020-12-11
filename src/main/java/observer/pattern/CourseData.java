@@ -42,9 +42,9 @@ public class CourseData extends Observable {
 		if (!alreadyExists)
 			this.courseData.addElement(courseRecord);
 		if (observers != null){
-			this.notifyObservers(courseData, observers);
+			this.notifyObservers(courseData, observers, true);
 		}else{
-		this.notifyObservers(courseData);
+		this.notifyObservers(courseData, true);
 		}
 	}
 
@@ -64,7 +64,7 @@ public class CourseData extends Observable {
 				i = courseData.size();
 			}
 		}
-		this.notifyObservers(courseData);
+		this.notifyObservers(courseData, false);
 	}
 
 	/**

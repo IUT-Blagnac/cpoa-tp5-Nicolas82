@@ -23,7 +23,7 @@ public class BarChartObserver extends JPanel implements Observer {
 	 *            a CourseData object to observe
 	 */
 	public BarChartObserver(CourseData data) {
-		data.attach(this);
+		data.attach(this, false);
 		this.courseData = data.getUpdate();
 		this.setPreferredSize(new Dimension(2 * LayoutConstants.xOffset
 				+ (LayoutConstants.barSpacing + LayoutConstants.barWidth)
@@ -36,7 +36,7 @@ public class BarChartObserver extends JPanel implements Observer {
 	 * Paint method
 	 * 
 	 * @param g
-	 *            a Graphics object on which to paint
+	 * a Graphics object on which to paint
 	 */
 	public void paint(Graphics g) {
 		super.paint(g);
